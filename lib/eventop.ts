@@ -12,9 +12,9 @@ export const eventop = new Eventop({
 
 export const PLANS = {
   basic: {
-    id: 'miuqwtoz-gyc75d2y',
+    id: 'basic-monthly',
     name: 'Basic',
-    price: 0.40,
+    price: 9.99,
     interval: 'month',
     features: [
       'HD streaming',
@@ -24,9 +24,9 @@ export const PLANS = {
     ]
   },
   standard: {
-    id: 'miu41lsc-78ssn2d4',
+    id: 'standard-monthly',
     name: 'Standard',
-    price: 5,
+    price: 15.99,
     interval: 'month',
     features: [
       'Full HD streaming',
@@ -36,17 +36,17 @@ export const PLANS = {
       'Cancel anytime'
     ]
   },
-  // premium: {
-  //   id: 'premium-monthly',
-  //   name: 'Premium',
-  //   price: 19.99,
-  //   interval: 'month',
-  //   features: [
-  //     '4K + HDR streaming',
-  //     '4 devices at a time',
-  //     'Unlimited movies & TV shows',
-  //     'Download on 4 devices',
-  //     'Cancel anytime'
-  //   ]
-  // }
+  premium: {
+    id: 'premium-monthly',
+    name: 'Premium',
+    price: 19.99,
+    interval: 'month',
+    features: [
+      '4K + HDR streaming',
+      '4 devices at a time',
+      'Unlimited movies & TV shows',
+      'Download on 4 devices',
+      'Cancel anytime'
+    ]
+  }
 };

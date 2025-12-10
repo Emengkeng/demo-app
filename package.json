@@ -12,7 +12,6 @@
   "dependencies": {
     "@eventop/sdk": "^1.0.2",
     "dotenv": "^17.2.3",
-    "link": "^2.1.1",
     "lucide-react": "^0.294.0",
     "next": "14.0.4",
     "react": "^18.2.0",
