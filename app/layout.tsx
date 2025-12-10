@@ -46,9 +46,6 @@ function Header() {
             <Link href="/how-it-works" className="text-gray-300 hover:text-white transition">
               How It Works
             </Link>
-            <Link href="/account" className="text-gray-300 hover:text-white transition">
-              Account
-            </Link>
           </nav>
 
           <Link

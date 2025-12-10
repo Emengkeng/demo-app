@@ -5,7 +5,7 @@ if (!process.env.EVENTOP_API_KEY) {
 }
 
 export const eventop = new Eventop({
-  apiKey: process.env.EVENTOP_API_KEY,
+  apiKey: process.env.EVENTOP_API_KE!,
 });
 
 export const PLANS = {
