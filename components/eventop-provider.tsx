@@ -35,7 +35,7 @@ export function EventopProvider({ children }: { children: React.ReactNode }) {
         'Apply a template',
       ]}
       theme={{
-        mode: 'dark',
+        mode: 'glass',
         tokens: {
           accent: '#6366f1',
           accentSecondary: '#8b5cf6',

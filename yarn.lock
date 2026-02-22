@@ -7,10 +7,10 @@
   resolved "https://registry.yarnpkg.com/@alloc/quick-lru/-/quick-lru-5.2.0.tgz#7bf68b20c0a350f936915fcae06f58e32007ce30"
   integrity sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==
 
-"@eventop/sdk@^1.1.7":
-  version "1.1.7"
-  resolved "https://registry.yarnpkg.com/@eventop/sdk/-/sdk-1.1.7.tgz#559c2d2010997edfc04f794d9930af4aa890f6f5"
-  integrity sha512-xuXw82sMGaQnvG+RpzF8hYupELF1QOKkJQ6epUnxUKir5y0OPYqtWcxuD3jxc923FW2ZmdnhI/U12TWSGPQ5ww==
+"@eventop/sdk@^1.1.9":
+  version "1.1.9"
+  resolved "https://registry.yarnpkg.com/@eventop/sdk/-/sdk-1.1.9.tgz#aa0c836c2f743d6407c47546717ce0f92b0b1624"
+  integrity sha512-F5ZtKxKO67deMnKiFHnWWZdppYN2vynCDB9rizChVqj4l9pGMTm9EYnr5NeqHA/xvFwf67ab0Xcz097UBjC/pA==
   dependencies:
     node-fetch "^2.6.7"
     react "^19.2.4"
