@@ -11,7 +11,6 @@ interface CanvasToolbarProps {
 export function CanvasToolbar({ effectsOpen, onEffectsClick }: CanvasToolbarProps) {
   return (
     <div className="canvas-toolbar" id="canvas-toolbar">
-
       <EventopTarget
         id="add-text"
         name="Add Text"
@@ -29,7 +28,7 @@ export function CanvasToolbar({ effectsOpen, onEffectsClick }: CanvasToolbarProp
         <IconButton icon="🖼" label="Insert image" id="btn-insert-image" />
       </EventopTarget>
 
-      {/* Effects button is both a standalone feature AND step 1 of drop-shadow */}
+      {/* Dual registration: standalone feature + step in drop-shadow flow */}
       <EventopTarget
         id="effects-panel-btn"
         name="Effects Panel"
@@ -67,9 +66,10 @@ export function CanvasToolbar({ effectsOpen, onEffectsClick }: CanvasToolbarProp
         name="Share Design"
         description="Share a link to this design with others"
       >
-        <Button id="btn-share" variant="ghost">Share</Button>
+        <Button id="btn-share" variant="ghost">
+          Share
+        </Button>
       </EventopTarget>
-
     </div>
   );
 }

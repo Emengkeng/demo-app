@@ -10,10 +10,15 @@ const provider = async ({
   messages: { role: 'user' | 'assistant'; content: string }[];
 }) => {
   const res = await fetch('/api/guide', {
-    method:  'POST',
+    method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body:    JSON.stringify({ systemPrompt, messages }),
+    body: JSON.stringify({ systemPrompt, messages }),
   });
+
+  if (!res.ok) {
+    throw new Error(`API error: ${res.status}`);
+  }
+
   return res.json();
 };
 
@@ -30,12 +35,12 @@ export function EventopProvider({ children }: { children: React.ReactNode }) {
         'Apply a template',
       ]}
       theme={{
-        mode:   'dark',
+        mode: 'dark',
         tokens: {
-          accent:          '#6366f1',
+          accent: '#6366f1',
           accentSecondary: '#8b5cf6',
-          fontFamily:      "'Inter', system-ui, sans-serif",
-          radius:          '14px',
+          fontFamily: "'Inter', system-ui, sans-serif",
+          radius: '14px',
         },
       }}
       position={{ corner: 'bottom-right', offsetX: 24, offsetY: 24 }}

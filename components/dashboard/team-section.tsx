@@ -6,33 +6,40 @@ import { useEventopAI } from '@eventop/sdk/react';
 import { Button, Avatar } from '../ui';
 
 const members = [
-  { name: 'Alice', role: 'Owner',  color: '#6366f1' },
-  { name: 'Bob',   role: 'Editor', color: '#10b981' },
-  { name: 'Clara', role: 'Viewer', color: '#f59e0b' },
-];
+  { id: '1', name: 'Alice', role: 'Owner',  color: '#6366f1' },
+  { id: '2', name: 'Bob',   role: 'Editor', color: '#10b981' },
+  { id: '3', name: 'Clara', role: 'Viewer', color: '#f59e0b' },
+] as const;
 
 export function TeamSection() {
   const { stepComplete, stepFail } = useEventopAI();
   const [email,    setEmail]    = useState('');
   const [inviting, setInviting] = useState(false);
 
-  async function handleInvite() {
-    if (!email.includes('@')) {
+  const validateEmail = (email: string): boolean => {
+    return email.includes('@') && email.includes('.');
+  };
+
+  const handleInvite = async () => {
+    if (!validateEmail(email)) {
       stepFail('Please enter a valid email address.');
       return;
     }
+    
     setInviting(true);
-    await new Promise(r => setTimeout(r, 900));
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 900));
     setInviting(false);
+    setEmail('');
     stepComplete();
-  }
+  };
 
   return (
     <>
       <h2 className="section-title">Team</h2>
       <div className="team-row">
         {members.map(m => (
-          <div key={m.name} className="member-card">
+          <div key={m.id} className="member-card">
             <Avatar name={m.name} color={m.color} />
             <div>
               <div className="member-name">{m.name}</div>
@@ -53,8 +60,13 @@ export function TeamSection() {
               onChange={e => setEmail(e.target.value)}
               placeholder="colleague@company.com"
               className="text-input"
+              disabled={inviting}
             />
-            <Button onClick={handleInvite} disabled={inviting} id="btn-send-invite">
+            <Button 
+              onClick={handleInvite} 
+              disabled={inviting || !email} 
+              id="btn-send-invite"
+            >
               {inviting ? 'Sending…' : 'Invite'}
             </Button>
           </div>

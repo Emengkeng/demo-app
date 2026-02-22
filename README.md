@@ -1,185 +1,109 @@
-# StreamFlix Demo - Eventop Integration Example
+# Eventop Demo - Cleaned Architecture
 
-A demo merchant website showcasing on-chain subscriptions powered by Eventop Protocol.
-
-## Features
-
-- 🎬 Complete subscription flow (Pricing → Checkout → Success)
-- 💳 Real Eventop SDK integration
-- 🔔 Webhook event handling
-- 📊 Admin dashboard for webhook logs
-- 👤 User account page with subscription details
-- 🎨 Beautiful, production-ready UI
-
-## Quick Start
-
-### 1. Prerequisites
-
-- Node.js 18+ and npm
-- Eventop merchant account ([dashboard.eventop.xyz](https://dashboard.eventop.xyz))
-- Solana wallet (Devnet for testing)
-
-### 2. Installation
-```bash
-git clone https://github.com/eventop-s/demo-app.git
-cd demo-app
-yarn install
+#### 1. **Proper Next.js App Router Structure**
+```
+app/
+├── page.tsx              # Redirects to /dashboard
+├── layout.tsx            # Root layout with Nav + TourStatusBar
+├── dashboard/page.tsx    # Dashboard route
+├── canvas/page.tsx       # Canvas route
+├── templates/page.tsx    # Templates route
+└── api/guide/route.ts    # API endpoint
 ```
 
-### 3. Environment Setup
-
-Create `.env.local`:
-```bash
-# Eventop Configuration (Devnet)
-EVENTOP_API_KEY=sk_test_your_key_here
-EVENTOP_WEBHOOK_SECRET=whsec_test_your_secret_here
-MERCHANT_WALLET=YourDevnetWalletAddress
-
-# App Configuration
-NEXT_PUBLIC_APP_URL=http://localhost:3000
-NEXT_PUBLIC_EVENTOP_ENV=devnet
+#### 2. **Component Organization**
+```
+components/
+├── ui.tsx                      # Reusable UI primitives
+├── nav.tsx                     # Top navigation
+├── TourStatusBar.tsx           # Tour status indicator
+├── eventop-provider.tsx        # Eventop SDK provider
+├── dashboard/
+│   ├── stats-row.tsx
+│   ├── project-grid.tsx
+│   └── team-section.tsx
+├── canvas/
+│   ├── canvas-toolbar.tsx
+│   ├── canvas-stage.tsx
+│   ├── effects-panel.tsx
+│   ├── shadow-controls.tsx
+│   └── export-panel.tsx
+└── templates/
+    └── template-grid.tsx
 ```
 
-### 4. Create Subscription Plans
+#### 3. **Better TypeScript**
+- Added proper type definitions for all props
+- Used `as const` for immutable arrays
+- Improved type safety throughout
 
-Before running the app, create plans in the Eventop dashboard:
+#### 4. **Code Quality Improvements**
+- **Consistent naming**: All files use kebab-case
+- **Better state management**: Used functional updates (`prev => !prev`)
+- **Improved handlers**: Named functions instead of inline arrows
+- **Added validation**: Email validation in team invite
+- **Error handling**: Try-catch in API route
+- **Accessibility**: Added ARIA attributes to interactive elements
 
-1. Go to [dashboard-devnet.eventop.xyz](https://dashboard-devnet.eventop.xyz)
-2. Create three plans with these IDs:
-   - `basic-monthly` - $9.99/month
-   - `standard-monthly` - $15.99/month
-   - `premium-monthly` - $19.99/month
+#### 5. **Removed Code Smells**
+- ❌ No more client-side routing state
+- ❌ No more duplicate component definitions
+- ❌ No more inconsistent prop passing
+- ✅ Single source of truth for routes
+- ✅ Proper separation of concerns
+- ✅ Consistent component patterns
 
-### 5. Setup Webhook Endpoint
+## Project Structure
 
-For local development, use [ngrok](https://ngrok.com):
-```bash
-# In a separate terminal
-ngrok http 3000
-
-# Copy the HTTPS URL (e.g., https://abc123.ngrok.io)
-# Add to Eventop dashboard: https://abc123.ngrok.io/api/webhooks/eventop
+```
+eventop-demo/
+├── app/
+│   ├── api/guide/route.ts       # Anthropic API proxy
+│   ├── canvas/page.tsx          # Canvas editor
+│   ├── dashboard/page.tsx       # Dashboard home
+│   ├── templates/page.tsx       # Template selector
+│   ├── layout.tsx               # Root layout
+│   ├── page.tsx                 # Redirect to dashboard
+│   └── globals.css              # Global styles
+├── components/
+│   ├── canvas/                  # Canvas-related components
+│   ├── dashboard/               # Dashboard components
+│   ├── templates/               # Template components
+│   ├── eventop-provider.tsx     # SDK provider
+│   ├── nav.tsx                  # Navigation
+│   ├── TourStatusBar.tsx        # Tour indicator
+│   └── ui.tsx                   # UI primitives
+└── package.json
 ```
 
-### 6. Run Development Server
+## Key Features Preserved
+
+✅ **Multi-step tours** with `EventopStep`
+✅ **Dual registration** (Effects button is both standalone + step)
+✅ **Async validation** in team invite
+✅ **Cross-component flows** (drop-shadow spans multiple components)
+✅ **Navigation handling** via Next.js router
+✅ **All Eventop SDK features** working as intended
+
+## Running the App
+
 ```bash
+npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000)
+Then navigate to `http://localhost:3000` — you'll be redirected to `/dashboard`.
 
-## Testing the Flow
+## Environment Variables
 
-1. **Visit Homepage** - See the landing page
-2. **Go to Pricing** - Enter your email and select a plan
-3. **Checkout** - You'll be redirected to Eventop checkout
-4. **Download App** - Get the Eventop mobile app (devnet mode)
-5. **Complete Subscription** - Approve in the app
-6. **Success** - Return to StreamFlix success page
-7. **Check Account** - View your subscription details
-
-## Project Structure
-```
-streamflix-demo/
-├── app/
-│   ├── page.tsx                 # Landing page
-│   ├── pricing/page.tsx         # Plans & checkout
-│   ├── success/page.tsx         # Post-checkout
-│   ├── account/page.tsx         # User dashboard
-│   ├── admin/page.tsx           # Webhook logs
-│   ├── how-it-works/page.tsx    # Explainer
-│   └── api/
-│       ├── checkout/route.ts    # Create session
-│       └── webhooks/eventop/route.ts  # Handle webhooks
-├── lib/
-│   ├── eventop.ts              # SDK configuration
-│   └── db.ts                   # Demo database
-└── components/                  # Reusable UI components
+```env
+GEMINI_API_KEY=your_key_here
 ```
 
-## Key Files
+## Next Steps
 
-### API Routes
-
-- **`/api/checkout`** - Creates Eventop checkout sessions
-- **`/api/webhooks/eventop`** - Receives subscription events
-
-### Pages
-
-- **`/`** - Landing page with features
-- **`/pricing`** - Subscription plans
-- **`/success`** - Post-subscription confirmation
-- **`/account`** - User subscription management
-- **`/admin`** - Webhook logs and stats
-- **`/how-it-works`** - Educational content
-
-## Deployment
-
-### Vercel (Recommended)
-```bash
-# Install Vercel CLI
-npm i -g vercel
-
-# Deploy
-vercel
-
-# Set environment variables in Vercel dashboard
-```
-## Going to Production
-
-1. **Switch to Mainnet**
-   - Get mainnet API key (`sk_live_...`)
-   - Update environment variables
-   - Use mainnet wallet address
-
-2. **Update URLs**
-   - Set `NEXT_PUBLIC_APP_URL` to your domain
-   - Update success/cancel URLs
-
-3. **Configure Webhook**
-   - Use your production domain
-   - Ensure HTTPS is enabled
-
-4. **Test Thoroughly**
-   - Do test transactions on mainnet with small amounts
-   - Monitor webhook logs
-   - Verify all flows work
-
-
-### Add Features
-
-- User authentication (NextAuth.js)
-- Database (Prisma + PostgreSQL)
-- Email notifications (Resend, SendGrid)
-- Analytics (PostHog, Mixpanel)
-
-## Troubleshooting
-
-### Webhooks Not Received
-
-- Verify webhook URL is publicly accessible
-- Check Eventop dashboard for delivery errors
-- Use ngrok for local development
-- Ensure endpoint returns 200 status
-
-### Checkout Session Expired
-
-- Sessions expire after 30 minutes
-- User must complete checkout before expiry
-- Create new session if expired
-
-### API Key Errors
-
-- Ensure key starts with `sk_test_` for devnet
-- Check key is set in environment variables
-- Verify key hasn't been revoked
-
-## Support
-
-- **Documentation**: [docs.eventop.xyz](https://docs.eventop.xyz)
-- **Email**: contact@eventop.xyz
-- **Discord**: [Join our community](#)
-
-## License
-
-MIT - feel free to use as a template for your own integration
+1. Add loading states for API calls
+2. Implement actual export functionality
+3. Add error boundaries
+4. Add analytics tracking
+5. Create E2E tests for tour flows

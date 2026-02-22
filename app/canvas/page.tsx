@@ -13,65 +13,66 @@ export default function CanvasPage() {
   const [shadowOn,    setShadowOn]    = useState(false);
   const [blurOn,      setBlurOn]      = useState(false);
 
-  function handleSelectEl(id: string | null) {
+  const handleSelectEl = (id: string | null) => {
     setSelectedEl(id);
-    if (!id) { setEffectsOpen(false); setShadowOn(false); }
-  }
+    if (!id) { 
+      setEffectsOpen(false); 
+      setShadowOn(false); 
+    }
+  };
 
-  function handleEffectsClick() {
-    if (selectedEl) setEffectsOpen(v => !v);
-  }
+  const handleEffectsClick = () => {
+    if (selectedEl) setEffectsOpen(prev => !prev);
+  };
 
-  function handleShadowToggle() {
-    setShadowOn(v => {
-      const next = !v;
+  const handleShadowToggle = () => {
+    setShadowOn(prev => {
+      const next = !prev;
+      // Update DOM class after state change
       setTimeout(() => {
         document.getElementById('shadow-controls')
           ?.classList.toggle('visible', next);
       }, 0);
       return next;
     });
-  }
+  };
 
   return (
-    // EventopTarget registers the parent drop-shadow feature.
-    // The individual EventopSteps inside child components
-    // attach to this feature id automatically.
     <EventopTarget
       id="drop-shadow"
       name="Drop Shadow Effect"
       description="Apply a customisable drop shadow to a selected canvas element"
     >
       <div className="canvas-screen">
-
         <CanvasToolbar
           effectsOpen={effectsOpen}
           onEffectsClick={handleEffectsClick}
         />
 
         <div className="canvas-body">
-          <CanvasStage selectedEl={selectedEl} onSelect={handleSelectEl} />
+          <CanvasStage 
+            selectedEl={selectedEl} 
+            onSelect={handleSelectEl} 
+          />
 
-          <div className="canvas-panel" id="canvas-panel">
-
-            {!selectedEl && (
-              <div className="no-selection">Click a shape to select it.</div>
-            )}
-
-            {selectedEl && (
+          <div className="canvas-panel">
+            {!selectedEl ? (
+              <div className="no-selection">
+                Click a shape to select it.
+              </div>
+            ) : (
               <EffectsPanel
                 open={effectsOpen}
                 shadowOn={shadowOn}
                 blurOn={blurOn}
                 onShadowToggle={handleShadowToggle}
-                onBlurToggle={() => setBlurOn(v => !v)}
+                onBlurToggle={() => setBlurOn(prev => !prev)}
               />
             )}
 
             <ExportPanel />
           </div>
         </div>
-
       </div>
     </EventopTarget>
   );

@@ -7,7 +7,7 @@ const tabs = [
   { label: 'Dashboard', href: '/dashboard' },
   { label: 'Canvas',    href: '/canvas'    },
   { label: 'Templates', href: '/templates' },
-];
+] as const;
 
 export function Nav() {
   const pathname = usePathname();
@@ -20,7 +20,7 @@ export function Nav() {
           <Link
             key={tab.href}
             href={tab.href}
-            className={`nav-tab ${pathname.startsWith(tab.href) ? 'active' : ''}`}
+            className={`nav-tab ${pathname === tab.href ? 'active' : ''}`}
           >
             {tab.label}
           </Link>

@@ -9,7 +9,7 @@ export function TourStatusBar() {
 
   return (
     <div className="tour-bar">
-      <span className="tour-bar-label">
+      <span>
         {isPaused ? '⏸ Tour paused' : '▶ Tour running'}
       </span>
       {isPaused && (

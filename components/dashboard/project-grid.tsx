@@ -5,10 +5,10 @@ import { EventopTarget } from '@eventop/sdk/react';
 import { Card } from '../ui';
 
 const projects = [
-  { name: 'Brand Kit v2',  thumb: '🎨', sub: '2h ago'     },
-  { name: 'Landing Page',  thumb: '📐', sub: 'Yesterday'  },
-  { name: 'Social Posts',  thumb: '🖼', sub: '3 days ago' },
-];
+  { id: '1', name: 'Brand Kit v2',  thumb: '🎨', sub: '2h ago'     },
+  { id: '2', name: 'Landing Page',  thumb: '📐', sub: 'Yesterday'  },
+  { id: '3', name: 'Social Posts',  thumb: '🖼', sub: '3 days ago' },
+] as const;
 
 export function ProjectGrid() {
   const router = useRouter();
@@ -19,7 +19,7 @@ export function ProjectGrid() {
       <div className="grid">
         {projects.map(p => (
           <Card
-            key={p.name}
+            key={p.id}
             thumb={p.thumb}
             title={p.name}
             subtitle={p.sub}

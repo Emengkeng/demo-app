@@ -10,11 +10,17 @@ const templates = [
   { id: 'banner',       emoji: '🏷', name: 'Web Banner',   size: '1200×628'  },
   { id: 'logo',         emoji: '✦',  name: 'Logo Kit',     size: 'Multi'     },
   { id: 'presentation', emoji: '📊', name: 'Presentation', size: '16:9'      },
-];
+] as const;
 
 export function TemplateGrid() {
-  const router   = useRouter();
+  const router = useRouter();
   const [selected, setSelected] = useState<string | null>(null);
+
+  const handleApply = () => {
+    if (selected) {
+      router.push('/canvas');
+    }
+  };
 
   return (
     <>
@@ -44,7 +50,7 @@ export function TemplateGrid() {
           description="Confirm and open the selected template in the canvas"
           advanceOn={{ event: 'click', delay: 300 }}
         >
-          <Button id="btn-apply-template" onClick={() => router.push('/canvas')}>
+          <Button id="btn-apply-template" onClick={handleApply}>
             Apply template →
           </Button>
         </EventopTarget>
