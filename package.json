@@ -1,5 +1,5 @@
 {
-  "name": "streamflix-demo",
+  "name": "eventop-demo",
   "version": "1.0.0",
   "repository": "git@github.com:eventop-s/demo-app.git",
   "private": true,
@@ -10,7 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@eventop/sdk": "^1.0.2",
+    "@eventop/sdk": "^1.1.7",
     "dotenv": "^17.2.3",
     "lucide-react": "^0.294.0",
     "next": "14.0.4",
