@@ -32,6 +32,7 @@ export function EffectsPanel({
           id="shadow-toggle-feature"
           name="Shadow Toggle"
           description="Turn drop shadow on or off"
+          route="/canvas"
         >
           <EventopStep
             feature="drop-shadow"
@@ -39,10 +40,10 @@ export function EffectsPanel({
             waitFor="#effects-panel.open"
             advanceOn={{ event: 'click', delay: 300 }}
           >
-            <Toggle 
-              id="shadow-toggle" 
-              on={shadowOn} 
-              onToggle={onShadowToggle} 
+            <Toggle
+              id="shadow-toggle"
+              on={shadowOn}
+              onToggle={onShadowToggle}
             />
           </EventopStep>
         </EventopTarget>
@@ -58,11 +59,12 @@ export function EffectsPanel({
           id="blur-toggle-feature"
           name="Background Blur"
           description="Apply a blur to the background behind the element"
+          route="/canvas"
         >
-          <Toggle 
-            id="blur-toggle" 
-            on={blurOn} 
-            onToggle={onBlurToggle} 
+          <Toggle
+            id="blur-toggle"
+            on={blurOn}
+            onToggle={onBlurToggle}
           />
         </EventopTarget>
       </div>

@@ -25,9 +25,8 @@ export function TeamSection() {
       stepFail('Please enter a valid email address.');
       return;
     }
-    
+
     setInviting(true);
-    // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 900));
     setInviting(false);
     setEmail('');
@@ -52,6 +51,7 @@ export function TeamSection() {
           id="invite-member"
           name="Invite Teammate"
           description="Add a new member to the workspace by email"
+          route="/dashboard"
         >
           <div className="invite-card" id="invite-form">
             <input
@@ -62,9 +62,9 @@ export function TeamSection() {
               className="text-input"
               disabled={inviting}
             />
-            <Button 
-              onClick={handleInvite} 
-              disabled={inviting || !email} 
+            <Button
+              onClick={handleInvite}
+              disabled={inviting || !email}
               id="btn-send-invite"
             >
               {inviting ? 'Sending…' : 'Invite'}

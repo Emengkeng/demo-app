@@ -15,9 +15,9 @@ export default function CanvasPage() {
 
   const handleSelectEl = (id: string | null) => {
     setSelectedEl(id);
-    if (!id) { 
-      setEffectsOpen(false); 
-      setShadowOn(false); 
+    if (!id) {
+      setEffectsOpen(false);
+      setShadowOn(false);
     }
   };
 
@@ -28,7 +28,6 @@ export default function CanvasPage() {
   const handleShadowToggle = () => {
     setShadowOn(prev => {
       const next = !prev;
-      // Update DOM class after state change
       setTimeout(() => {
         document.getElementById('shadow-controls')
           ?.classList.toggle('visible', next);
@@ -42,6 +41,7 @@ export default function CanvasPage() {
       id="drop-shadow"
       name="Drop Shadow Effect"
       description="Apply a customisable drop shadow to a selected canvas element"
+      route="/canvas"
     >
       <div className="canvas-screen">
         <CanvasToolbar
@@ -50,9 +50,9 @@ export default function CanvasPage() {
         />
 
         <div className="canvas-body">
-          <CanvasStage 
-            selectedEl={selectedEl} 
-            onSelect={handleSelectEl} 
+          <CanvasStage
+            selectedEl={selectedEl}
+            onSelect={handleSelectEl}
           />
 
           <div className="canvas-panel">

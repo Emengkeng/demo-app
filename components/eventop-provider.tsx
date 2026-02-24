@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { EventopAIProvider } from '@eventop/sdk/react';
 
 const provider = async ({
@@ -23,9 +24,12 @@ const provider = async ({
 };
 
 export function EventopProvider({ children }: { children: React.ReactNode }) {
+  const router = useRouter();
+
   return (
     <EventopAIProvider
       provider={provider}
+      router={(path) => router.push(path)}
       appName="Eventop"
       assistantName="Event AI"
       suggestions={[

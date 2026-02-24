@@ -28,6 +28,7 @@ export function TemplateGrid() {
         id="template-gallery"
         name="Template Gallery"
         description="Browse and select a design template to start from"
+        route="/templates"
       >
         <div id="template-grid" className="grid">
           {templates.map(t => (
@@ -48,6 +49,7 @@ export function TemplateGrid() {
           id="apply-template"
           name="Apply Template"
           description="Confirm and open the selected template in the canvas"
+          route="/templates"
           advanceOn={{ event: 'click', delay: 300 }}
         >
           <Button id="btn-apply-template" onClick={handleApply}>

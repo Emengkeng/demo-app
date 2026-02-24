@@ -9,6 +9,7 @@ export function ExportPanel() {
       id="export-panel"
       name="Export Panel"
       description="Download the design as PNG, SVG, or PDF"
+      route="/canvas"
     >
       <div className="export-section">
         <div className="panel-label">Export</div>

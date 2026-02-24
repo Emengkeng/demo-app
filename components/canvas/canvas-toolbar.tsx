@@ -15,6 +15,7 @@ export function CanvasToolbar({ effectsOpen, onEffectsClick }: CanvasToolbarProp
         id="add-text"
         name="Add Text"
         description="Insert a text element onto the canvas"
+        route="/canvas"
         advanceOn={{ event: 'click', delay: 200 }}
       >
         <IconButton icon="T" label="Add text" id="btn-add-text" />
@@ -24,6 +25,7 @@ export function CanvasToolbar({ effectsOpen, onEffectsClick }: CanvasToolbarProp
         id="insert-image"
         name="Insert Image"
         description="Upload an image onto the canvas"
+        route="/canvas"
       >
         <IconButton icon="🖼" label="Insert image" id="btn-insert-image" />
       </EventopTarget>
@@ -33,6 +35,7 @@ export function CanvasToolbar({ effectsOpen, onEffectsClick }: CanvasToolbarProp
         id="effects-panel-btn"
         name="Effects Panel"
         description="Open the effects panel to apply shadows and blur"
+        route="/canvas"
         advanceOn={{ event: 'click', delay: 200 }}
       >
         <EventopStep
@@ -57,6 +60,7 @@ export function CanvasToolbar({ effectsOpen, onEffectsClick }: CanvasToolbarProp
         id="export"
         name="Export Design"
         description="Download the canvas as PNG, SVG or PDF"
+        route="/canvas"
       >
         <Button id="btn-export">Export</Button>
       </EventopTarget>
@@ -65,6 +69,7 @@ export function CanvasToolbar({ effectsOpen, onEffectsClick }: CanvasToolbarProp
         id="share"
         name="Share Design"
         description="Share a link to this design with others"
+        route="/canvas"
       >
         <Button id="btn-share" variant="ghost">
           Share

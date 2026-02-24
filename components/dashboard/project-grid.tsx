@@ -31,6 +31,7 @@ export function ProjectGrid() {
           id="new-project"
           name="Create New Project"
           description="Start a new blank design project"
+          route="/dashboard"
         >
           <Card
             isNew
