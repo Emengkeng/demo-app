@@ -167,3 +167,265 @@ input[type=range] { width: 100%; accent-color: var(--accent); }
 
 /* Templates */
 .templates-body { flex: 1; overflow-y: auto; padding: 36px 40px; }
+
+/* ── Touch target minimum ── */
+@media (max-width: 768px) {
+  .btn,
+  .icon-btn,
+  .toggle,
+  .nav-tab,
+  .tour-bar-btn {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* ── Nav: stack logo + scrollable tabs ── */
+  .topnav {
+    height: auto;
+    min-height: 52px;
+    flex-wrap: wrap;
+    padding: 8px 12px;
+    gap: 8px;
+  }
+
+  .logo {
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  .nav-tabs {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 4px;
+    padding-bottom: 2px;
+  }
+
+  .nav-tabs::-webkit-scrollbar { display: none; }
+
+  .nav-tab {
+    padding: 8px 16px;
+    font-size: 14px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    border-radius: 8px;
+  }
+
+  /* ── Tour bar: allow wrapping ── */
+  .tour-bar {
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 10px 12px;
+  }
+
+  .tour-bar-btn {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+
+  /* ── Dashboard: single-column layout ── */
+  body { overflow: auto; }
+  .app { height: auto; min-height: 100vh; }
+  .main { overflow: auto; }
+
+  .dashboard-body {
+    padding: 20px 16px 32px;
+  }
+
+  .section-title {
+    font-size: 17px;
+    margin-top: 24px;
+    margin-bottom: 12px;
+  }
+
+  /* Stats: horizontal scroll on very small screens */
+  .stats-row {
+    gap: 10px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 4px;
+  }
+
+  .stats-row::-webkit-scrollbar { display: none; }
+
+  .stat-card {
+    min-width: 140px;
+    padding: 14px 16px;
+  }
+
+  .stat-value { font-size: 24px; }
+
+  /* Cards grid: 2-column on mobile */
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .card-thumb { height: 80px; font-size: 24px; }
+  .card-new { min-height: 110px; }
+  .card-info { padding: 8px 10px; }
+  .card-title { font-size: 12px; }
+  .card-subtitle { font-size: 10px; }
+
+  /* Team: vertical stack */
+  .team-row {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .member-card { width: 100%; }
+
+  .invite-card {
+    flex-direction: column;
+    width: 100%;
+    gap: 8px;
+  }
+
+  .invite-card .text-input {
+    width: 100%;
+    padding: 10px 14px;
+    font-size: 15px; /* prevents iOS zoom */
+  }
+
+  .invite-card .btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  /* ── Canvas: vertical layout ── */
+  .canvas-screen { height: auto; min-height: 100vh; }
+
+  .canvas-toolbar {
+    height: auto;
+    flex-wrap: wrap;
+    padding: 8px 10px;
+    gap: 4px;
+  }
+
+  .canvas-body {
+    flex-direction: column;
+    overflow: auto;
+  }
+
+  .canvas-stage {
+    min-height: 320px;
+    height: 40vh;
+    background-size: 40px 40px; /* keep grid visible */
+  }
+
+  /* Panel moves below the stage */
+  .canvas-panel {
+    width: 100%;
+    border-left: none;
+    border-top: 1px solid var(--border);
+    max-height: 50vh;
+    overflow-y: auto;
+  }
+
+  .effects-panel { padding: 12px 14px; }
+
+  .export-section { flex-direction: row; flex-wrap: wrap; gap: 6px; }
+  .export-section .btn { flex: 1; min-width: 80px; }
+
+  /* ── Templates ── */
+  .templates-body { padding: 20px 16px 32px; }
+
+  /* ── Sliders: easier touch ── */
+  input[type=range] {
+    height: 24px;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+  }
+}
+
+/* ── Extra small (< 360px): single-column cards ── */
+@media (max-width: 360px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-row {
+    flex-direction: column;
+    overflow-x: unset;
+  }
+
+  .stat-card { min-width: unset; width: 100%; }
+}
+
+/* ── Tablet (769px – 1024px): mild tweaks ── */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .dashboard-body,
+  .templates-body { padding: 24px 28px; }
+
+  .grid { grid-template-columns: repeat(3, 1fr); }
+
+  .canvas-panel { width: 200px; }
+
+  .stats-row { gap: 12px; }
+}
+
+/* Hide hamburger on desktop */
+.nav-hamburger { display: none; }
+
+@media (max-width: 640px) {
+  /* Hide scrollable tab row, show hamburger instead */
+  .nav-tabs-inline { display: none; }
+
+  .nav-hamburger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--surface2);
+    color: var(--text);
+    font-size: 18px;
+    cursor: pointer;
+    line-height: 1;
+  }
+
+  .nav-hamburger:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .nav-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    padding: 8px 12px 12px;
+    gap: 4px;
+  }
+
+  .nav-dropdown-item {
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 15px;
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: background .15s, color .15s;
+  }
+
+  .nav-dropdown-item:hover,
+  .nav-dropdown-item.active {
+    background: var(--surface2);
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  /* Keep topnav height stable */
+  .topnav { flex-wrap: nowrap; }
+}
