@@ -8,9 +8,9 @@
   integrity sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==
 
 "@eventop/sdk@^1.2.13":
-  version "1.2.13"
-  resolved "https://registry.yarnpkg.com/@eventop/sdk/-/sdk-1.2.13.tgz#6671cd0ec302623f40e8df3b078ff689a5bf0dea"
-  integrity sha512-S1tiABI298udddH7utMuFIJCGvu+uc5V9Jp6xi5w+u1IYwAIm62lDHZeQAGhVP1LFCteEc/bdCkfi1XnHLj5/Q==
+  version "1.2.14"
+  resolved "https://registry.yarnpkg.com/@eventop/sdk/-/sdk-1.2.14.tgz#6484bb87ac291ea16be8fe03d6286d167e4fdd82"
+  integrity sha512-O9xrBIAwBHJntAJ8Rze/QSy+4wZlTAZsCsuPBt/QLgRJGQGUbAWusrHtreBQR0j66BB/lInRRZkC2m7J8twkCg==
   dependencies:
     node-fetch "^2.6.7"
     react "^19.2.4"
