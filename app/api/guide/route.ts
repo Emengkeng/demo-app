@@ -26,6 +26,25 @@ setInterval(() => {
   }
 }, 5 * 60000);
 
+export async function GET(request: Request) {
+  return Response.json({
+    status: 'operational',
+    message: 'Guide API is running',
+    rateLimit: `${RATE_LIMIT} requests per ${TIME_WINDOW / 1000} seconds`,
+  });
+}
+
+export async function OPTIONS(request: Request) {
+  return new Response(null, {
+    status: 200,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type',
+    },
+  });
+}
+
 export async function POST(request: Request) {
   try {
     const ip = getClientIP(request);
@@ -36,10 +55,12 @@ export async function POST(request: Request) {
     const recentRequests = times.filter(t => t > now - TIME_WINDOW);
 
     if (recentRequests.length >= RATE_LIMIT) {
-      return Response.json(
+      const response = Response.json(
         { error: 'Too many requests. Please wait a minute.' },
         { status: 429 }
       );
+      response.headers.set('Access-Control-Allow-Origin', '*');
+      return response;
     }
 
     // Record this request
@@ -69,9 +90,16 @@ export async function POST(request: Request) {
 
     const data = await res.json();
     const text = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
-    return Response.json(JSON.parse(text));
+    const response = Response.json(JSON.parse(text));
+    response.headers.set('Access-Control-Allow-Origin', '*');
+    return response;
   } catch (err) {
     console.error('[/api/guide]', err);
-    return Response.json({ error: 'Failed to generate tour' }, { status: 500 });
+    const response = Response.json(
+      { error: 'Failed to generate tour' },
+      { status: 500 }
+    );
+    response.headers.set('Access-Control-Allow-Origin', '*');
+    return response;
   }
 }
